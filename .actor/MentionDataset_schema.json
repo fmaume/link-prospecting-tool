@@ -1,0 +1,44 @@
+{
+    "actorSpecification": 1,
+    "fields": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "type": "object",
+        "properties": {
+            "AIOverview_mention": {
+                        "label": "Boolean",
+                        "format": "boolean"
+            },
+      "ChatGPT_mention": {
+                        "label": "Boolean",
+                        "format": "boolean"
+            },
+                  "OrganicResult_mention": {
+                        "label": "Boolean",
+                        "format": "boolean"
+            },
+                  "Perplexity_mention": {
+                        "label": "Boolean",
+                        "format": "boolean"
+            },
+                  "backling_in_source": {
+                        "label": "Boolean",
+                        "format": "boolean"
+            },
+                  "brand_mentioned_in_source": {
+                        "label": "Boolean",
+                        "format": "boolean"
+            },       "domain": {
+                        "label": "Text",
+                        "format": "text"
+            }, "queries": {
+                        "label": "Array",
+                        "format": "array"
+            }, "url": {
+                        "label": "Link",
+                        "format": "link"
+            }
+        },
+        "required": ["url"]
+    },
+    "views": {}
+}

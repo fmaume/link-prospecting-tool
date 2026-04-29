@@ -1,0 +1,21 @@
+{
+    "actorSpecification": 1,
+    "fields": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "type": "object",
+        "properties": {
+            "resultUrl": {
+                        "label": "url",
+                        "format": "link"
+            },
+            "actor":
+            {
+                        "label": "actor",
+                        "format": "string"
+            }
+
+        }
+        
+        }
+        
+}

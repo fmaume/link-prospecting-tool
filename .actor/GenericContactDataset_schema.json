@@ -1,0 +1,63 @@
+{
+    "actorSpecification": 1,
+    "fields": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "type": "object",
+        "properties": {
+   
+               "firstName": {
+                        "label": "Text",
+                        "format": "text"
+            }, "lastName": {
+                        "label": "Text",
+                        "format": "text"
+            }, "fullName": {
+                        "label": "Text",
+                        "format": "text"
+            }, "email": {
+                        "label": "Text",
+                        "format": "text"
+            }, "jobTitle": {
+                        "label": "Text",
+                        "format": "text"
+            }, "mobileNumber": {
+                        "label": "Text",
+                        "format": "text"
+            }, "industry": {
+                        "label": "Text",
+                        "format": "text"
+            }, "city": {
+                        "label": "Text",
+                        "format": "text"
+            }, "state": {
+                        "label": "Text",
+                        "format": "text"
+            }, "country": {
+                        "label": "Text",
+                        "format": "text"
+            }, "companyName": {
+                        "label": "Text",
+                        "format": "text"
+            }, "headline": {
+                        "label": "Text",
+                        "format": "text"
+            }, "seniority": {
+                        "label": "Text",
+                        "format": "text"
+            }
+            
+            
+            ,"linkedinProfile": {
+                        "label": "Link",
+                        "format": "link"
+            }  ,"companyLinkedin": {
+                        "label": "Link",
+                        "format": "link"
+            } ,"twitter": {
+                        "label": "Link",
+                        "format": "link"
+            }
+        }
+    },
+    "views": {}
+}

@@ -1,0 +1,10 @@
+.DS_Store
+.idea
+.vscode
+.zed
+storage
+apify_storage
+crawlee_storage
+.venv
+__pycache__
+*.pyc

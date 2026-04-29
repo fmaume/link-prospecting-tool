@@ -1,0 +1,135 @@
+{
+    "title": "Link Prospecting Tool",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "queries": {
+            "title": "Search queries",
+            "type": "string",
+            "description": "Enter one search query per line. These queries will be sent to the enabled AI platforms (ChatGPT, Google AI Mode, AI Overviews, and Perplexity) to check for your brand's visibility.",
+            "prefill": "best search engine\nalternative to google\nbest AI search",
+            "editor": "textarea",
+            "pattern": "[^\\s]+"
+        },
+        "brand": {
+            "title": "Brand name",
+            "type": "string",
+            "description": "The brand name to search for in AI-generated responses and cited sources. The search is case-insensitive.",
+            "prefill": "Google",
+            "editor": "textfield"
+        },        
+        "organicResult": {
+            "title": "Organic results to include",
+            "type": "integer",
+            "description": "How many organic search results to include per query. Asking for more than 10 will slow down the Actor.",
+            "default": 10,
+            "minimum": 0,
+            "maximum": 500,
+            "editor": "number",
+            "sectionCaption": "Organic search",
+            "sectionDescription": "How many Google organic results do you wish to include?"
+    
+        },
+        "enableChatGpt": {
+            "title": "Enable ChatGPT Search",
+            "type": "boolean",
+            "description": "Enable ChatGPT Search to get AI-generated answers from OpenAI's search model. Additional fees apply per successful result via the Google Search Scraper Actor.",
+            "default": true,
+            "sectionCaption": "AI platforms",
+            "sectionDescription": "Select which AI platforms to monitor for brand visibility. Each enabled platform adds to the processing time and cost. At least one platform should be enabled."
+        },
+        "enableAiMode": {
+            "title": "Enable Google AI Mode",
+            "type": "boolean",
+            "description": "Enable Google AI Mode to get Google's AI-generated responses. Additional fees apply per successful result via the Google Search Scraper Actor.",
+            "default": false
+        },
+        "enableAiOverviews": {
+            "title": "Process Google AI Overviews",
+            "type": "boolean",
+            "description": "Process Google AI Overviews that appear in search results. No additional cost - the Actor will analyze the AI Overview content and sources for brand mentions.",
+            "default": true
+        },
+        "enablePerplexity": {
+            "title": "Enable Perplexity AI Search",
+            "type": "boolean",
+            "description": "Enable Perplexity AI to get answers from the Sonar model. Additional fees apply per successful result via the Google Search Scraper Actor.",
+            "default": false
+        },
+
+        "ownDomains": {
+            "title": "Own domains (to exclude)",
+            "type": "array",
+            "description": "List your own domains to exclude from source analysis. Sources from these domains will be skipped since you already have presence there.",
+            "editor": "stringList",
+            "items": {
+                "type": "string"
+            },
+            "default": [],
+            "prefill": ["google.com", "developers.google.com"],
+            "sectionCaption": "Domain filters",
+            "sectionDescription": "Configure which domains to exclude from source analysis. Own domains and competitor domains are filtered out, leaving only third-party sources that represent outreach opportunities."
+        },
+        "competitorDomains": {
+            "title": "Competitor domains (to exclude)",
+            "type": "array",
+            "description": "List competitor domains to exclude from source analysis. Sources from these domains will be skipped.",
+            "editor": "stringList",
+            "items": {
+                "type": "string"
+            },
+            "default": [],
+            "prefill": ["bing.com", "microsoft.com"]
+        },       
+         "ignoreDomains": {
+            "title": "Other domains to exclude",
+            "type": "array",
+            "description": "List competitor domains to exclude. For example domain with user generated content like Quora and Youtube",
+            "editor": "stringList",
+            "items": {
+                "type": "string"
+            },
+            "default": [],
+            "prefill": ["wikipedia.org", "github.com", "stackoverflow.com", "stackexchange.com",    "reddit.com", "quora.com", "youtube.com", "twitter.com", "x.com",    "linkedin.com", "facebook.com", "medium.com", "archive.org"]
+        },
+        "maxContactsPerDomain": {
+            "title": "Max contacts per domain",
+            "type": "integer",
+            "description": "Maximum number of contact leads to scrape from each source domain where the brand isn't mentioned. Higher values increase cost but provide more outreach contacts.",
+            "default": 1,
+            "minimum": 1,
+            "maximum": 10,
+            "editor": "number",
+            "sectionCaption": "Contact search",
+            "sectionDescription": "Control how many sources and contacts are processed per query to manage costs."
+        },
+        "includeMention": {
+            "title": "Include mentions without backlink",
+            "type": "boolean",
+            "description": "By default, sources that mention your brand without giving you a backlink are included in the contact search.",
+            "default": true
+        },
+        "departement": {
+            "title": "Department to search for leads",
+            "type": "array",
+            "editor": "select",
+            "description": "By default, the Actor looks for leads in the marketing department, as they're most likely to work on link building.",
+            "default": ["marketing", "c_suite"],
+            "prefill": ["marketing", "c_suite"],
+            "items": {
+                "type": "string",
+                "enumTitles": ["C-Suite", "Engineering & Technical", "Product", "Design", "Finance", "Education", "Human Resources", "Information Technology", "Legal", "Marketing", "Medical & Health", "Operations", "Sales", "Consulting"],
+                "enum": ["c_suite", "engineering_technical", "product", "design", "finance", "education", "human_resources", "information_technology", "legal", "marketing", "medical_health", "operations", "sales", "consulting"]
+            }
+        },
+        "searchAuthorName": {
+            "title": "Search for author name",
+            "type": "boolean",
+            "description": "Uses AI to identify the author of the article and find their email address.",
+            "default": false,
+            "sectionCaption": "Add-on: Author name search",
+            "sectionDescription": "Find the author name and article title to personalize your outreach. ($35/1k blog posts)"
+        }
+    },
+    "required": ["queries", "brand"]
+}

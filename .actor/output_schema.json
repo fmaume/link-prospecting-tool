@@ -1,0 +1,46 @@
+{
+    "actorOutputSchemaVersion": 1,
+    "title": "Output schema",
+    "properties": {
+        "Mentions": {
+            "type": "string",
+            "title": "Mention",
+            "template": "{{storages.datasets.mention.apiUrl}}/items"
+        },
+        "AllLeads": {
+            "type": "string",
+            "title": "All leads",
+            "template": "{{storages.datasets.default.apiUrl}}/items"
+        },
+        "Batch1": {
+            "type": "string",
+            "title": "Batch1",
+            "template": "{{storages.datasets.Batch1.apiUrl}}/items"
+        },
+        "Batch2": {
+            "type": "string",
+            "title": "Batch2",
+            "template": "{{storages.datasets.Batch2.apiUrl}}/items"
+        },
+        "Batch3": {
+            "type": "string",
+            "title": "Batch3",
+            "template": "{{storages.datasets.Batch3.apiUrl}}/items"
+        },
+        "domainWithLeads": {
+            "type": "string",
+            "title": "Domain with leads",
+            "template": "{{storages.datasets.domainWithLeads.apiUrl}}/items"
+        },
+        "AuthorList": {
+            "type": "string",
+        "title": "Author list",
+            "template": "{{storages.datasets.AuthorList.apiUrl}}/items"
+        },
+                "subResults": {
+            "type": "string",
+        "title": "Results of sub-actors",
+            "template": "{{storages.datasets.subResults.apiUrl}}/items"
+        }
+    }
+}

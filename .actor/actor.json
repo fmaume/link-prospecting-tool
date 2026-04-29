@@ -1,0 +1,29 @@
+{
+    "actorSpecification": 1,
+    "name": "Link Prospecting Tool",
+    "title": "Link Prospecting Tool",
+    "description": "Monitor your brand visibility across AI and organic search platforms (ChatGPT, Google AI Mode, Google AI Overviews, and Perplexity). Check if quoted soruces your brand, find link outreach opportunities.",
+    "version": "0.1",
+    "buildTag": "latest",
+    "meta": {
+        "templateId": "python-empty",
+        "generatedBy": "Claude Code with Claude Opus 4.6"
+    },
+    "dockerfile": "../Dockerfile",
+    "input": "./input_schema.json",
+    "output": "./output_schema.json",
+    "storages": {
+       "datasets": {
+            "mention":  "./MentionDataset_schema.json",
+            "AuthorList": "./AuthorDataset_schema.json",
+            "default": "./GenericContactDataset_schema.json",
+            "Batch1": "./GenericContactDataset_schema.json",
+            "Batch2": "./GenericContactDataset_schema.json",
+            "Batch3": "./GenericContactDataset_schema.json",
+            "domainWithLeads" : "./domainWithLeadsDataset_schema.json",
+            "subResults": "./subResults_shema.json"
+
+        }
+    },
+    "defaultMemoryMbytes": 1000
+}
