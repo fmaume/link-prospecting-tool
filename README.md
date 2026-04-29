@@ -232,5 +232,3 @@ To access the API using Node.js, use the `apify-client` NPM package. To access t
 With the Apify API, you can use almost any Actor in conjunction with an MCP server. You can connect to the MCP server using clients like ClaudeDesktop and LibreChat, or even build your own. Read all about how you can [set up Apify Actors with MCP](https://blog.apify.com/how-to-use-mcp/). 
 
 [video MCP tutorial](https://www.youtube.com/watch?v=BKu8H91uCTg)
-
-- "this soruce" → "this source" (typo in the Mentions output field table)
