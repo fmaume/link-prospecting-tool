@@ -219,6 +219,7 @@ The right number depends on your site's size and existing link profile. A new si
 
 ### Can I use integrations with Link Prospecting Tool?
 You can integrate Link Prospecting Tool with almost any cloud service or web app. The Apify platform offers integrations with **Make, Zapier, Slack, Airbyte, GitHub, Google Sheets, Google Drive**, [and plenty more](https://docs.apify.com/integrations):
+
 [video integrations tutorial](https://www.youtube.com/watch?v=bNACk1_S_6w)
 
 Alternatively, you could use [webhooks](https://docs.apify.com/integrations/webhooks) to carry out an action whenever an event occurs.
