@@ -42,7 +42,7 @@
             "title": "Enable Google AI Mode",
             "type": "boolean",
             "description": "Enable Google AI Mode to get Google's AI-generated responses. Additional fees apply per successful result via the Google Search Scraper Actor.",
-            "default": false
+            "default": true
         },
         "enableAiOverviews": {
             "title": "Process Google AI Overviews",
@@ -54,7 +54,7 @@
             "title": "Enable Perplexity AI Search",
             "type": "boolean",
             "description": "Enable Perplexity AI to get answers from the Sonar model. Additional fees apply per successful result via the Google Search Scraper Actor.",
-            "default": false
+            "default": true
         },
 
         "ownDomains": {
