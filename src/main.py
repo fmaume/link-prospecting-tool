@@ -159,7 +159,7 @@ async def main() -> None:
 
         
 
-        department = actor_input.get('departement')
+        department = actor_input.get('department')
         if len(department) == 0:
             department = ['marketing']
 
@@ -390,7 +390,7 @@ async def main() -> None:
             domain = get_root_url(current_url)
             result['domain'] = domain
             result['brand_mentioned_in_source'] = brand_mentioned_in_source
-            result['backling_in_source'] = len(brand_urls_in_source) > 0
+            result['backlink_in_source'] = len(brand_urls_in_source) > 0
 
             # save data to add to the lead list
             source_list.append({"domain": extract_domain(current_url), "brand_mentioned_in_source": brand_mentioned_in_source, "url": current_url})
@@ -410,7 +410,7 @@ async def main() -> None:
                 Actor.log.error(f'Failed to push data to dataset: {some_error}')
 
             # Add to enrichment list if no backlink exists.
-            if not result['backling_in_source']:
+            if not result['backlink_in_source']:
                 if include_mention:
                     to_enrich.append(current_url)
                 elif not brand_mentioned_in_source:

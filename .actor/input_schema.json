@@ -109,7 +109,7 @@
             "description": "By default, sources that mention your brand without giving you a backlink are included in the contact search.",
             "default": true
         },
-        "departement": {
+        "department": {
             "title": "Department to search for leads",
             "type": "array",
             "editor": "select",
