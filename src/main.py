@@ -159,7 +159,7 @@ async def main() -> None:
 
         
 
-        department = actor_input.get('departement')
+        department = actor_input.get('department')
         if len(department) == 0:
             department = ['marketing']
 
