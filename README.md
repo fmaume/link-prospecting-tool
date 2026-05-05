@@ -115,7 +115,7 @@ This Actor is billed per usage and costs approximately $0.02 per query. It also 
 - **[AI Web Scraper](https://apify.com/apify/ai-web-scraper)** - $25/1,000 sources. Only charged when the power-up is enabled.
 
 To minimize costs during testing:
-- limit organic results to 10
+- Limit organic results to 10
 - Provide only one to two search queries
 - Limit the number of leads per source with `maxContactsPerDomain` set to 2.
 
@@ -235,7 +235,7 @@ You can integrate Link Prospecting Tool with almost any cloud service or web app
 
 Alternatively, you could use [webhooks](https://docs.apify.com/integrations/webhooks) to carry out an action whenever an event occurs.
 
-This should allow you to easily push the lead list to your cold outreach tool.
+This should allow you to push the lead list to your cold outreach tool.
 
 ### Can I use Link Prospecting Tool with the Apify API?
 The Apify API gives you programmatic access to the Apify platform. The API is organized around RESTful HTTP endpoints that enable you to manage, schedule, and run Apify Actors. The API also lets you access any datasets, monitor Actor performance, fetch results, create and update versions, and more.
