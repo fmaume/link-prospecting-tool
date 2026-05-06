@@ -25,5 +25,6 @@
 
         }
     },
-    "defaultMemoryMbytes": 1000
+    "defaultMemoryMbytes": 1000,
+    "timeoutSecs": 6000
 }
