@@ -55,6 +55,16 @@
             "type": "boolean",
             "description": "Enable Perplexity AI to get answers from the Sonar model. Additional fees apply per successful result via the Google Search Scraper Actor.",
             "default": true
+        }, "enableGemini": {
+            "title": "Enable Gemini AI Search",
+            "type": "boolean",
+            "description": "Fetches an AI answer from Gemini (gemini.google.com) for every query to compare against other AI platforms.",
+            "default": true
+        },   "enableCopilot": {
+            "title": "Enable Copilot AI Search",
+            "type": "boolean",
+            "description": "Fetches an AI answer from Copilot for every query to compare against other AI models.",
+            "default": true
         },
 
         "ownDomains": {
@@ -121,6 +131,12 @@
                 "enumTitles": ["C-Suite", "Engineering & Technical", "Product", "Design", "Finance", "Education", "Human Resources", "Information Technology", "Legal", "Marketing", "Medical & Health", "Operations", "Sales", "Consulting"],
                 "enum": ["c_suite", "engineering_technical", "product", "design", "finance", "education", "human_resources", "information_technology", "legal", "marketing", "medical_health", "operations", "sales", "consulting"]
             }
+        },          
+        "enableEmailVerification": {
+            "title": "Email verification",
+            "type": "boolean",
+            "description": "When enabled, verifies the email address of each lead extracted during business leads enrichment. Each lead receives an emailVerification object with the verification result and quality assessment.",
+            "default": true
         },
         "searchAuthorName": {
             "title": "Search for author name",

@@ -188,9 +188,11 @@ async def main() -> None:
             #raise ValueError('At least one AI platform must be enabled.')
 
         enable_chat_gpt = actor_input.get('enableChatGpt', True)
-        enable_ai_mode = actor_input.get('enableAiMode', False)
+        enable_ai_mode = actor_input.get('enableAiMode', True)
         # enableAiOverviews is included by default; no flag needed.
-        enable_perplexity = actor_input.get('enablePerplexity', False)
+        enable_perplexity = actor_input.get('enablePerplexity', True)
+        enableCopilot  = actor_input.get('enableCopilot', True)
+        enableGemini  = actor_input.get('enableGemini', True)
 
         queries = [q.strip() for q in queries_raw.split('\n') if q.strip()]
         if not queries:
@@ -231,6 +233,11 @@ async def main() -> None:
         if enable_perplexity:
             search_input['perplexitySearch'] = {'enablePerplexity': True}
 
+        if enableGemini:
+            search_input['geminiSearch'] = {  "enableGemini": True  }
+        if enableCopilot:
+            search_input['copilotSearch'] =  {   'enableCopilot': True  }
+
         try:
             run = await client.actor(GOOGLE_SEARCH_SCRAPER_ID).call(
                 run_input=search_input,
@@ -250,6 +257,8 @@ async def main() -> None:
             organic_result_appearance = list()
             url_per_query = list()
             ai_mode_appearance = list()
+            gemini_apperance = list() 
+            copilot_apperance = list() 
 
             # Collect source URLs from all AI platforms and organic results.
             for item in search_items:
@@ -322,7 +331,34 @@ async def main() -> None:
                         url_per_query.append({'url': clean_url, 'query': query})
                     except:
                         clean_url = ''
-
+                # parse gemini results
+                try:
+                    ai_overview_sources = item['geminiSearchResult']['sources']
+                except:
+                    ai_overview_sources = list()
+                for line in ai_overview_sources:
+                    try:
+                        clean_url = strip_utm_params(line['url'])
+                        processed_source_urls.append(clean_url)
+                        gemini_apperance.append(clean_url)
+                        url_per_query.append({'url': clean_url, 'query': query})
+                    except:
+                        clean_url = ''
+                
+                # parse copilot results
+                try:
+                    ai_overview_sources = item['copilotSearchResult']['sources']
+                except:
+                    ai_overview_sources = list()
+                for line in ai_overview_sources:
+                    try:
+                        clean_url = strip_utm_params(line['url'])
+                        processed_source_urls.append(clean_url)
+                        copilot_apperance.append(clean_url)
+                        url_per_query.append({'url': clean_url, 'query': query})
+                    except:
+                        clean_url = ''      
+                    
         except Exception as error:
             Actor.log.error(f'Google Search Scraper run failed: {error}')
 
@@ -330,12 +366,12 @@ async def main() -> None:
         processed_source_urls = list(set(processed_source_urls))
         Actor.log.info(f'Got {len(processed_source_urls)} unique source URL(s) from AI search.')
 
-        # Filter out blocklisted, own, and competitor domains.
+        # Filter out blacklisted, own, and competitor domains.
         filtered_source = list()
         for url in processed_source_urls:
             domain = extract_domain(url)
             if domain in SKIP_CONTACT_DOMAINS:
-                Actor.log.info(f'Skipped blocklisted source: {url}')
+                Actor.log.info(f'Skipped blacklisted source: {url}')
             elif domain in own_domains:
                 Actor.log.info(f'Skipped own domain: {url}')
             elif domain in competitor_domains:
@@ -401,6 +437,8 @@ async def main() -> None:
             result['AIOverview_mention'] = current_url in ai_overview_appearance
             result['AIMode'] = current_url in ai_mode_appearance
             result['OrganicResult_mention'] = current_url in organic_result_appearance
+            result['Gemini_mention'] = current_url in gemini_apperance
+            result['Copilot_mention'] = current_url in copilot_apperance
 
             result['queries'] = list(set([sub['query'] for sub in url_per_query if sub['url'] == current_url]))
 
@@ -437,6 +475,9 @@ async def main() -> None:
             to_enrich_domains = list(set([get_root_url(url) for url in to_enrich]))
             start_url = [{'url': url} for url in to_enrich_domains]
 
+            # check if email verification should be enabled
+            enableEmailVerification = actor_input.get('enableEmailVerification', True)
+
             contact_search_input = {
                 'leadsEnrichmentDepartments': department,
                 'maxDepth': 0,
@@ -445,6 +486,7 @@ async def main() -> None:
                 'mergeContacts': True,
                 'sameDomain': True,
                 'startUrls': start_url,
+                'verifyLeadsEnrichmentEmails' : enableEmailVerification
             }
 
             run = await client.actor(CONTACT_DETAILS_SCRAPER_ID).call(
