@@ -366,12 +366,12 @@ async def main() -> None:
         processed_source_urls = list(set(processed_source_urls))
         Actor.log.info(f'Got {len(processed_source_urls)} unique source URL(s) from AI search.')
 
-        # Filter out blocklisted, own, and competitor domains.
+        # Filter out blacklisted, own, and competitor domains.
         filtered_source = list()
         for url in processed_source_urls:
             domain = extract_domain(url)
             if domain in SKIP_CONTACT_DOMAINS:
-                Actor.log.info(f'Skipped blocklisted source: {url}')
+                Actor.log.info(f'Skipped blacklisted source: {url}')
             elif domain in own_domains:
                 Actor.log.info(f'Skipped own domain: {url}')
             elif domain in competitor_domains:
