@@ -233,7 +233,7 @@ async def main() -> None:
         if enable_perplexity:
             search_input['perplexitySearch'] = {'enablePerplexity': True}
 
-        if enableGemin:
+        if enableGemini:
             search_input['geminiSearch'] = {  "enableGemini": True  }
         if enableCopilot:
             search_input['copilotSearch'] =  {   'enableCopilot': True  }
