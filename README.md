@@ -4,7 +4,7 @@ Turn a list of search queries into a ready-to-use link-building outreach list.
 
 This Actor handles the full list-building workflow:
 
-1. **Scrape search results** - get results for your queries across Google Search, ChatGPT, and Perplexity.
+1. **Scrape search results** - get results for your queries across Google Search, ChatGPT, Gemini, Copilot, and Perplexity.
 2. **Filter already-mentioned domains** - remove any sources that already mention your brand.
 3. **Enrich leads** - get contact details for each source so you can run cold outreach.
 
@@ -84,6 +84,8 @@ When using the **Export** button you will get the All leads dataset. You need to
 | AIMode | Did the source appear in Google AI mode? |
 | AIOverview_mention | Did the source appear in Google AI Overview? |
 | ChatGPT_mention | Did the source appear in ChatGPT search? |
+| Copilot_mention | Did the source appear in Copilot search? |
+| Gemini_mention | Did the source appear in Gemini search? |
 | OrganicResult_mention | Did the source appear in Google organic results? |
 | Perplexity_mention | Did the source appear in Perplexity search? |
 
@@ -135,11 +137,14 @@ You can also minimize cost by excluding more websites using `ignoreDomains`.
 | `enableAiMode` | boolean | Include AI mode results in the search |
 | `enableAiOverviews` | boolean | Include AI Overviews results in the search |
 | `enablePerplexity` | boolean | Include Perplexity results in the search |
+| `enableGemini` | boolean | Include Gemini results in the search |
+| `enableCopilot` | boolean | Include Copilot results in the search |
 | `organicResult` | integer | Number of Google organic results to include per search |
 | `maxContactsPerDomain` | integer | Max contact leads per source domain (default: 1) |
 | `includeMention` | boolean | Run lead enrichment for sources that mention the brand but don't include a backlink |
 | `department` | string[] | Target department for lead enrichment |
-| `searchAuthorName` | boolean | Enrich results with the author name |
+| `enableEmailVerification` | boolean | Verify if found emails are valid |
+| `searchAuthorName` | boolean | Identify author name from the blog posts |
 
 #### Example input
 
@@ -158,6 +163,9 @@ You can also minimize cost by excluding more websites using `ignoreDomains`.
   "enableAiOverviews": true,
   "enableChatGpt": true,
   "enablePerplexity": true,
+  "enableCopilot": false,
+  "enableEmailVerification": true,
+  "enableGemini": false,
   "includeMention": true,
   "ownDomains": [
     "google.com",
@@ -189,7 +197,7 @@ You can also minimize cost by excluding more websites using `ignoreDomains`.
 
 For each search query you provide, this Actor:
 
-1. **Queries Search engines** via [Google Search Scraper](https://apify.com/apify/google-search-scraper) to sources mentioned in Google organic search, ChatGPT search, Perplexity search, and Google AI mode.
+1. **Queries search engines** via [Google Search Scraper](https://apify.com/apify/google-search-scraper) to sources mentioned in Google organic search, ChatGPT search, Perplexity search, and Google AI mode.
 2. **Checks brand mentions in the AI response** using case-insensitive text matching.
 3. **Filters sources** by removing your own domains, competitor domains, and domains that aren't relevant for link building, like wikipedia.org and github.com
 4. **Crawls each source page** using [Website Content Crawler](https://apify.com/apify/website-content-crawler).
@@ -201,7 +209,7 @@ For each search query you provide, this Actor:
 
 This Actor orchestrates four Actors:
 
-- [Google Search Scraper](https://apify.com/apify/google-search-scraper) - fetches ChatGPT Search results.
+- [Google Search Scraper](https://apify.com/apify/google-search-scraper) - fetches results from Google organic search, ChatGPT, Perplexity, Gemini, Copilot, and AI Mode.
 - [Website Content Crawler](https://apify.com/apify/website-content-crawler) - crawls cited source pages.
 - [Contact Details Scraper](https://apify.com/apify/contact-details-scraper) - scrapes contact information from outreach opportunity domains.
 - [AI Web Scraper](https://apify.com/apify/ai-web-scraper) - power-up to find author names.
