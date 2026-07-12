@@ -1,4 +1,4 @@
-"""GEO Brand Monitor - Multi-platform AI brand visibility monitoring."""
+"""Link Prospecting Tool"""
 
 from __future__ import annotations
 
@@ -202,7 +202,7 @@ async def main() -> None:
             AI_PLATFORMS[k]['label'] for k, v in enable_flags.items() if v
         ]
         Actor.log.info(
-            f'Starting GEO Brand Monitor for brand "{brand}" with {len(queries)} '
+            f'Starting Link Prospecting Tool for brand "{brand}" with {len(queries)} '
             f'queries. Platforms: {", ".join(enabled_names)}'
         )
 
