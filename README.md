@@ -6,7 +6,9 @@ This Actor handles the full list-building workflow:
 
 1. **Scrape search results** - get results for your queries across Google Search, ChatGPT, Gemini, Copilot, and Perplexity.
 2. **Filter already-mentioned domains** - remove any sources that already mention your brand.
-3. **Enrich leads** - get contact details for each source so you can run cold outreach.
+3. **Enrich leads** - get contact details for each source so you can run cold outreach
+
+You can now do all of this directly from the [Google Search Result Scraper](https://apify.com/apify/google-search-scraper)
 
 ## What data can I extract with Link Prospecting Tool?
 
@@ -250,7 +252,12 @@ The Apify API gives you programmatic access to the Apify platform. The API is or
 
 To access the API using Node.js, use the `apify-client` npm package. To access the API using Python, use the `apify-client` PyPI package. Check out the [Apify API reference](https://docs.apify.com/api/v2) docs for all the details.
 
+
+
 ### Can I use Link Prospecting Tool through an MCP server?
 With the Apify API, you can use almost any Actor in conjunction with an MCP server. You can connect to the MCP server using clients like ClaudeDesktop and LibreChat, or even build your own. Read all about how you can [set up Apify Actors with MCP](https://blog.apify.com/how-to-use-mcp/). 
 
 [video MCP tutorial](https://www.youtube.com/watch?v=BKu8H91uCTg)
+
+### Can I edit the Link Prospecting Tool?
+The Link Prospecting Tool is open source. You can customize the code to build your own link prospecting tool.
