@@ -1,9 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(/opt/homebrew/bin/apify push:*)",
-      "WebSearch",
-      "WebFetch(domain:docs.apify.com)"
-    ]
-  }
-}

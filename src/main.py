@@ -1,4 +1,4 @@
-"""GEO Brand Monitor - Multi-platform AI brand visibility monitoring."""
+"""Link Prospecting Tool"""
 
 from __future__ import annotations
 
@@ -72,7 +72,7 @@ def strip_utm_params(url: str) -> str:
         if end > 0:
             url = url[0:end]
         return url
-    except:
+    except Exception:
         return url
 
 # Get domain without the http => good to prepare the contact finder input
@@ -202,7 +202,7 @@ async def main() -> None:
             AI_PLATFORMS[k]['label'] for k, v in enable_flags.items() if v
         ]
         Actor.log.info(
-            f'Starting GEO Brand Monitor for brand "{brand}" with {len(queries)} '
+            f'Starting Link Prospecting Tool for brand "{brand}" with {len(queries)} '
             f'queries. Platforms: {", ".join(enabled_names)}'
         )
 
@@ -267,7 +267,7 @@ async def main() -> None:
                 # Parse Perplexity results.
                 try:
                     perplexity_result = item['perplexitySearchResult']['citationUrls']
-                except:
+                except Exception:
                     perplexity_result = list()
 
                 for url in perplexity_result:
@@ -279,7 +279,7 @@ async def main() -> None:
                 # Parse ChatGPT results.
                 try:
                     chat_gpt_search_result = item['chatGptSearchResult']['sources']
-                except:
+                except Exception:
                     chat_gpt_search_result = list()
                 for line in chat_gpt_search_result:
                     try:
@@ -287,13 +287,13 @@ async def main() -> None:
                         processed_source_urls.append(clean_url)
                         chat_gpt_appearance.append(clean_url)
                         url_per_query.append({'url': clean_url, 'query': query})
-                    except:
+                    except Exception:
                         clean_url = ''
 
                 # Parse organic results.
                 try:
                     organic_results = item['organicResults']
-                except:
+                except Exception:
                     organic_results = list()
                 for line in organic_results:
                     try:
@@ -301,13 +301,13 @@ async def main() -> None:
                         processed_source_urls.append(clean_url)
                         organic_result_appearance.append(clean_url)
                         url_per_query.append({'url': clean_url, 'query': query})
-                    except:
+                    except Exception:
                         clean_url = ''
 
                 # Parse AI Overview results.
                 try:
                     ai_overview_sources = item['aiOverview']['sources']
-                except:
+                except Exception:
                     ai_overview_sources = list()
                 for line in ai_overview_sources:
                     try:
@@ -315,13 +315,13 @@ async def main() -> None:
                         processed_source_urls.append(clean_url)
                         ai_overview_appearance.append(clean_url)
                         url_per_query.append({'url': clean_url, 'query': query})
-                    except:
+                    except Exception:
                         clean_url = ''
                 
                 # Parse AImode results.
                 try:
                     ai_overview_sources = item['aiModeResult']['sources']
-                except:
+                except Exception:
                     ai_overview_sources = list()
                 for line in ai_overview_sources:
                     try:
@@ -329,7 +329,7 @@ async def main() -> None:
                         processed_source_urls.append(clean_url)
                         ai_mode_appearance.append(clean_url)
                         url_per_query.append({'url': clean_url, 'query': query})
-                    except:
+                    except Exception:
                         clean_url = ''
                 # parse gemini results
                 try:
@@ -342,13 +342,13 @@ async def main() -> None:
                         processed_source_urls.append(clean_url)
                         gemini_apperance.append(clean_url)
                         url_per_query.append({'url': clean_url, 'query': query})
-                    except:
+                    except Exception:
                         clean_url = ''
                 
                 # parse copilot results
                 try:
                     ai_overview_sources = item['copilotSearchResult']['sources']
-                except:
+                except Exception:
                     ai_overview_sources = list()
                 for line in ai_overview_sources:
                     try:
@@ -356,7 +356,7 @@ async def main() -> None:
                         processed_source_urls.append(clean_url)
                         copilot_apperance.append(clean_url)
                         url_per_query.append({'url': clean_url, 'query': query})
-                    except:
+                    except Exception:
                         clean_url = ''      
                     
         except Exception as error:
