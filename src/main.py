@@ -241,7 +241,7 @@ async def main() -> None:
         try:
             run = await client.actor(GOOGLE_SEARCH_SCRAPER_ID).call(
                 run_input=search_input,
-                timeout_secs=GOOGLE_SEARCH_TIMEOUT_SECS,
+                timeout=GOOGLE_SEARCH_TIMEOUT_SECS,
             )
             dataset = client.dataset(run['defaultDatasetId'])
             await subResults_dataset.push_data({"actor": "Google Search Result Scraper", "resultUrl": "https://console.apify.com/storage/datasets/"  + run['defaultDatasetId']})
@@ -397,7 +397,7 @@ async def main() -> None:
         try:
             wcc_run = await client.actor(WEBSITE_CONTENT_CRAWLER_ID).call(
                 run_input=run_input,
-                timeout_secs=WEBSITE_CRAWLER_TIMEOUT_SECS,
+                timeout=WEBSITE_CRAWLER_TIMEOUT_SECS,
                 memory_mbytes = 4096
 
             )
