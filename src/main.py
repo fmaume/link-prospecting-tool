@@ -17,10 +17,6 @@ WEBSITE_CONTENT_CRAWLER_ID = 'aYG0l9s7dbB7j3gbS'
 CONTACT_DETAILS_SCRAPER_ID = '9Sk4JJhEma9vBKqrg'
 
 
-GOOGLE_SEARCH_TIMEOUT_SECS = 1200000
-WEBSITE_CRAWLER_TIMEOUT_SECS = 3600000
-CONTACT_SCRAPER_TIMEOUT_SECS = 12000
-
 
 
 # AI platform config: (input_key, input_value, output_key, text_field, platform_label)
@@ -241,7 +237,7 @@ async def main() -> None:
         try:
             run = await client.actor(GOOGLE_SEARCH_SCRAPER_ID).call(
                 run_input=search_input,
-                timeout=GOOGLE_SEARCH_TIMEOUT_SECS,
+                
             )
             dataset = client.dataset(run['defaultDatasetId'])
             await subResults_dataset.push_data({"actor": "Google Search Result Scraper", "resultUrl": "https://console.apify.com/storage/datasets/"  + run['defaultDatasetId']})
@@ -397,7 +393,6 @@ async def main() -> None:
         try:
             wcc_run = await client.actor(WEBSITE_CONTENT_CRAWLER_ID).call(
                 run_input=run_input,
-                timeout=WEBSITE_CRAWLER_TIMEOUT_SECS,
                 memory_mbytes = 4096
 
             )
@@ -490,7 +485,7 @@ async def main() -> None:
             }
 
             run = await client.actor(CONTACT_DETAILS_SCRAPER_ID).call(
-                run_input=contact_search_input,
+                run_input=contact_search_input
             )
 
             dataset = client.dataset(run['defaultDatasetId'])
