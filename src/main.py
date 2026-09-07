@@ -239,8 +239,8 @@ async def main() -> None:
                 run_input=search_input,
                 
             )
-            dataset = client.dataset(run['defaultDatasetId'])
-            await subResults_dataset.push_data({"actor": "Google Search Result Scraper", "resultUrl": "https://console.apify.com/storage/datasets/"  + run['defaultDatasetId']})
+            dataset = client.dataset(run.default_dataset_id)
+            await subResults_dataset.push_data({"actor": "Google Search Result Scraper", "resultUrl": "https://console.apify.com/storage/datasets/"  + run.default_dataset_id})
             items_page = await dataset.list_items()
             search_items = items_page.items
 
@@ -390,19 +390,23 @@ async def main() -> None:
         wcc_start_url = [{'url': url} for url in filtered_source]
         run_input['startUrls'] = wcc_start_url
 
-        try:
-            wcc_run = await client.actor(WEBSITE_CONTENT_CRAWLER_ID).call(
-                run_input=run_input,
-                memory_mbytes = 4096
+        wcc_items = list()
+        if not filtered_source:
+            Actor.log.warning('No source URLs available for the Website Content Crawler; skipping step 2.')
+        else:
+            try:
+                wcc_run = await client.actor(WEBSITE_CONTENT_CRAWLER_ID).call(
+                    run_input=run_input,
+                    memory_mbytes = 4096
 
-            )
-            wcc_dataset = client.dataset(wcc_run['defaultDatasetId'])
-            await subResults_dataset.push_data({"actor": "Website Content Crawler", "resultUrl": "https://console.apify.com/storage/datasets/"  + wcc_run['defaultDatasetId']})
-            wcc_items_page = await wcc_dataset.list_items()
-            wcc_items = wcc_items_page.items
-            Actor.log.info(f'Website Content Crawler returned {len(wcc_items)} page(s).')
-        except Exception as error:
-            Actor.log.error(f'Website Content Crawler run failed: {error}')
+                )
+                wcc_dataset = client.dataset(wcc_run.default_dataset_id)
+                await subResults_dataset.push_data({"actor": "Website Content Crawler", "resultUrl": "https://console.apify.com/storage/datasets/"  + wcc_run.default_dataset_id})
+                wcc_items_page = await wcc_dataset.list_items()
+                wcc_items = wcc_items_page.items
+                Actor.log.info(f'Website Content Crawler returned {len(wcc_items)} page(s).')
+            except Exception as error:
+                Actor.log.error(f'Website Content Crawler run failed: {error}')
 
 
         # Step 3: Process Website Content Crawler results.
@@ -488,8 +492,8 @@ async def main() -> None:
                 run_input=contact_search_input
             )
 
-            dataset = client.dataset(run['defaultDatasetId'])
-            await subResults_dataset.push_data({"actor": "Contact Details Scraper", "resultUrl": "https://console.apify.com/storage/datasets/"  + run['defaultDatasetId']})
+            dataset = client.dataset(run.default_dataset_id)
+            await subResults_dataset.push_data({"actor": "Contact Details Scraper", "resultUrl": "https://console.apify.com/storage/datasets/"  + run.default_dataset_id})
             items_page = await dataset.list_items()
             lead_list = items_page.items
 
@@ -555,8 +559,8 @@ async def main() -> None:
                 run = await client.actor('paOtbjvyUiNsr1Qms').call(
                     run_input=ai_run_input,
                 )
-                dataset = client.dataset(run['defaultDatasetId'])
-                await subResults_dataset.push_data({"actor": "AI Web Scraper", "resultUrl": "https://console.apify.com/storage/datasets/"  + run['defaultDatasetId']})
+                dataset = client.dataset(run.default_dataset_id)
+                await subResults_dataset.push_data({"actor": "AI Web Scraper", "resultUrl": "https://console.apify.com/storage/datasets/"  + run.default_dataset_id})
                 items_page = await dataset.list_items()
                 author_list = items_page.items
 
